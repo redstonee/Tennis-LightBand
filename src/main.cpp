@@ -36,6 +36,7 @@ void setup()
 
   Strip::begin();
 
+  bool haveTarget = false;
   while (1)
   {
     if (Serial2.available())
@@ -60,16 +61,23 @@ void setup()
 
       if (lightData.ID == 0xff)
       {
+        haveTarget = false;
         ULOG_INFO("Cleaning");
         Strip::clear();
       }
       else
       {
+        haveTarget = true;
         ULOG_INFO("Target: %u, Color: %u %u %u", lightData.ID,
                   lightData.color[0], lightData.color[1], lightData.color[2]);
         Strip::setActivePartition(lightData.ID, lightData.color[0],
                                   lightData.color[1], lightData.color[2]);
       }
+    }
+
+    if (!haveTarget)
+    {
+      Strip::waterFlow(3);
     }
     delay(20);
   }

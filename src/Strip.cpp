@@ -1,4 +1,6 @@
 #include <Adafruit_NeoPixel.h>
+#include <ulog.h>
+
 #include "Strip.h"
 #include "config.h"
 
@@ -17,6 +19,7 @@ namespace Strip
 
     void begin()
     {
+        clear();
         rgb = Adafruit_NeoPixel(nPartitions * (pixelsPerPartition + nPaddingPixels) - nPaddingPixels, RGB_DATA_PIN, NEO_KHZ800 + NEO_BRG);
         rgb.begin();
     }
@@ -47,5 +50,18 @@ namespace Strip
         rgb.clear();
         rgb.fill(rgb.Color(r, g, b), start, pixelsPerPartition);
         rgb.show();
+    }
+
+    void waterFlow(uint8_t blockSize)
+    {
+        static auto start = 0;
+        
+        rgb.clear();
+        rgb.fill(rgb.Color(128, 128, 128), start, blockSize);
+        rgb.show();
+        start++;
+        if (start + blockSize > nPartitions * (pixelsPerPartition + nPaddingPixels) - nPaddingPixels)
+            start = 0;
+
     }
 } // namespace Strip
