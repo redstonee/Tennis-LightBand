@@ -14,4 +14,5 @@ constexpr auto UART2_RX_PIN = PA3;
 constexpr auto UART1_TX_PIN = PA9;
 constexpr auto UART1_RX_PIN = PA10;
 
-constexpr uint8_t LORA_CHANNEL = 45;           // Channel of the nodes
+constexpr uint8_t LORA_DONGLE_ADDRESS = 0x00; // Address of the dongle
+constexpr uint8_t LORA_CHANNEL = 45;          // Channel of the nodes

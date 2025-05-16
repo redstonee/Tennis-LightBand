@@ -73,6 +73,7 @@ void setup()
         Strip::setActivePartition(lightData.ID, lightData.color[0],
                                   lightData.color[1], lightData.color[2]);
       }
+      lora.sendP2P(LORA_DONGLE_ADDRESS, LORA_CHANNEL, ACK_BYTE);
     }
 
     if (!haveTarget)

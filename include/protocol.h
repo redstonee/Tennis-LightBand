@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-constexpr uint8_t LIGHT_HEADER = 0x8f; // Header for light data packet
+constexpr uint8_t LIGHT_HEADER = 0x8F; // Header for light data packet
 
 // The light data packet from the PC to the light module.
 struct __attribute__((packed)) LightData
@@ -12,3 +12,5 @@ struct __attribute__((packed)) LightData
     uint8_t color[3]; // RGB color values, 0-255
     uint8_t checksum;
 };
+
+constexpr uint8_t ACK_BYTE = 0xAA;
